@@ -1,0 +1,66 @@
+{% extends 'base.html '%}
+{% block content %}
+<!-- <h4>login content</h4> -->
+<style>
+    .text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        /* number of lines to show */
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+</style>
+<center>
+    <div>
+        <h4 class="text-center alert alert-info mt-3">Articles</h4>
+        {% if posts %}
+        <!-- <table class="table table-hover bg-white">
+        <thead>
+            <tr class="text-center">
+                <th scope="col" style="width:15%">Title</th>
+                <th scope="col" style="width:55%">Description</th>
+                <th scope="col" style="width:15%">Author
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+                {% if post.Private %}
+                {% else %}
+            <tr>
+                <td>{{post.title}}</td>
+                <td>{{post.article}}</td>
+                <td>{{post.user}}</td>
+                </td>
+            </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table> -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for post in posts %}
+                {% if post.Private %}
+                {% else %}
+            <!-- <a href="#"> -->
+
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body" style="background-color: #ccccb3;">
+                        <h3 class="card-title"><a href="{%  url 'article_detail' post.id %}" style="text-decoration: none;">{{post.title}}</a></h3>
+                        <h5 class="card-title">{{post.user}}</h5>
+                        <p class="text">{{post.article}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- </a> -->
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% else%}
+        <h4 class="text-center alert alert-warning">No Records</h4>
+        {% endif %}
+
+    </div>
+</center>
+{% endblock content %}

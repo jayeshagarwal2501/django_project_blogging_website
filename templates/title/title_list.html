@@ -1,0 +1,15 @@
+{% extends 'base.html '%}
+
+
+    
+{% block content %}
+<center>
+<div class="col-sm-2 my-5 text-center" >
+    <h4 class="my-5">Topics</h4>
+    {% for topic in name %}
+        <a href="{% url 'article_on_topic' topic %}" style="text-decoration: none;"> <p><strong>{{topic}} </strong></p> </a>
+    {% endfor %}
+
+</div>
+</center>
+{% endblock content %}

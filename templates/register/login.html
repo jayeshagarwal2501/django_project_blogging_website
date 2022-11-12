@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <h4>login content</h4> -->
+<div class="login-box">
+    <center>
+        <h2>Login</h2> <br>
+        <form action='' method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <a href="{% url 'resetpassword' %}">forgot password</a><br>
+            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+            <a href="{% url 'register' %}" class="btn btn-primary btn-sm">register</a>
+            <!-- <button type class="btn btn-primary btn-sm">register</button> -->
+    </center>
+    </form>
+    <center>
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+    </center>
+</div>
+{% endblock content %}

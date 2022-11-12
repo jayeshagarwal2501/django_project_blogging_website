@@ -1,0 +1,16 @@
+{% extends 'base.html '%}
+
+
+    
+{% block content %}
+<center>
+<div class="my-5 text-center" >
+    <h4 class="my-5">Authors</h4>
+    {% for user in name %}
+    <a href="{% url 'author_article' user.id %}" style="text-decoration: none;"><p><strong>{{user.first_name}} {{user.last_name}} -{{user.username}}</strong></p> </a>  
+
+    {% endfor %}
+
+</div>
+</center>
+{% endblock content %}

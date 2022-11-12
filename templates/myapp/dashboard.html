@@ -1,0 +1,95 @@
+{% extends 'base.html '%}
+{% block content %}
+<!-- <h4>login content</h4> -->
+<style>
+    .text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        /* number of lines to show */
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+</style>
+<div>
+    <h3 class=" my-5">My Post</h3>
+    <a href="{% url 'add_article' %}" class="btn btn-success">Add Post</a>
+    <h4 class="text-center alert alert-info mt-3">Articles</h4>
+    {% if posts %}
+    <!-- <table class="table table-hover bg-white">
+        <thead>
+            <tr class="text-center">
+                <th scope="col" style="width:15%">Title</th>
+                <th scope="col" style="width:55%">Description</th>
+                <th scope="col" style="width:15%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{post.title}}</td>
+                <td>{{post.article}}</td>
+                <td class="text-center">
+                    <a href="{%  url 'edit_article' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="{% url 'delete_article' post.id %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+    <!-- <div class="container">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="text">{{post.article}}</p>
+                    </div>
+                    <div>
+                        <center>
+                        <a href="{%  url 'edit_article' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{% url 'delete_article' post.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                        </form>
+                    </center>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div> -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in posts %}
+        <!-- <a href="#"> -->
+        <div class="col">
+          <div class="card h-100" style="background-color: #ccccb3;">
+            <div class="card-body" >
+              <h5 class="card-title"><a href="{%  url 'article_detail' post.id %}" style="text-decoration: none;">{{post.title}}</a></h5>
+              <p class="text">{{post.article}}</p>
+            </div>
+            <div>
+                <center>
+                <a href="{%  url 'edit_article' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{% url 'delete_confirm' post.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                </form>
+            </center>
+            </div>
+          </div>
+        </div>
+        <!-- </a> -->
+        {% endfor %}
+      </div>
+    {% else%}
+    <h4 class="text-center alert alert-warning">No Records</h4>
+    {% endif %}
+
+</div>
+{% endblock content %}

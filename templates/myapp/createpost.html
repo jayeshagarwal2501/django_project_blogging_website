@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-sm-10">
+    <h3 class="text-white my-5">Add Post</h3>
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form }}
+        <input type="hidden" name="user" value={{request.session.user_id}}>
+        <h3></h3>
+            <button class="btn btn-success col-auto " type="submit">Add</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+        {% if register_form.non_field_errors %}
+        {% for error in register_form.non_field_errors %}
+        <p>{{error}}</p>
+        {% endfor %}
+        {% endif %} 
+    </form>
+</div>
+{% endblock content %}

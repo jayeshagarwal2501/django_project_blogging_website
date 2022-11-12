@@ -1,0 +1,26 @@
+{% extends 'base.html '%}
+{% block content %}
+<!-- <h4>login content</h4> -->
+<div class="login-box">
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        {% for fm in form %}
+        <div class="col-md-8" style="margin-left: 400px; margin-top: 20px;">
+            {{fm.label_tag}} {{fm}} <small>{{fm.errors|striptags}}</small>
+        </div>
+        {% endfor %}
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p>{{error}}</p>
+        {% endfor %}
+        {% endif %}
+        <div style="margin-top: 20px;">
+            <center><input type="submit" value="submit" class="btn btn-primary btn-sm"> &nbsp;
+                <a href="{% url 'profile' %}">cancel</a>
+            </center>
+        </div>
+    </form>
+
+</div>
+{% endblock content %}
